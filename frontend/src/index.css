@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════
+   PREMIUM MONOCHROME DESIGN SYSTEM
+   ═══════════════════════════════════════════════ */
+
+:root {
+  --bg-app: #ffffff;
+  --bg-widget: #f4f4f5; /* zinc-100 */
+  --bg-sidebar: #ffffff;
+  
+  --text-main: #09090b; /* zinc-950 */
+  --text-muted: #71717a; /* zinc-500 */
+  --text-inverse: #ffffff;
+  
+  --border-main: #e4e4e7; /* zinc-200 */
+  --border-subtle: #f4f4f5; /* zinc-100 */
+  
+  --primary-accent: #000000;
+  --primary-accent-hover: #18181b; /* zinc-900 */
+  --primary-accent-glow: rgba(0, 0, 0, 0.05);
+  
+  --btn-primary-bg: #09090b;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #27272a;
+  
+  --btn-secondary-border: #d4d4d8; /* zinc-300 */
+  --btn-secondary-hover: rgba(9, 9, 11, 0.05);
+}
+
+html.dark {
+  --bg-app: #000000;
+  --bg-widget: #09090b; /* zinc-950 (matte dark black) */
+  --bg-sidebar: #000000;
+  
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa; /* zinc-400 */
+  --text-inverse: #000000;
+  
+  --border-main: #27272a; /* zinc-800 */
+  --border-subtle: #18181b; /* zinc-900 */
+  
+  --primary-accent: #ffffff;
+  --primary-accent-hover: #f4f4f5;
+  --primary-accent-glow: rgba(255, 255, 255, 0.15);
+  
+  --btn-primary-bg: #ffffff;
+  --btn-primary-text: #000000;
+  --btn-primary-hover: #e4e4e7;
+  
+  --btn-secondary-border: #3f3f46; /* zinc-700 */
+  --btn-secondary-hover: rgba(255, 255, 255, 0.06);
+}
+
+/* ═══════════════════════════════════════════════
+   BASE ELEMENTS & SCROLLBARS
+   ═══════════════════════════════════════════════ */
+
+:root {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-app) !important;
+  color: var(--text-main) !important;
+  overflow-x: hidden;
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Custom Sleek Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(9, 9, 11, 0.15);
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(9, 9, 11, 0.3);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.theme-transition {
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════════════
+   PREMIUM COMPONENT STYLES
+   ═══════════════════════════════════════════════ */
+
+/* Glossy Glassmorphic Element */
+.glass-premium {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(9, 9, 11, 0.05);
+}
+
+html.dark .glass-premium {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Premium Card Overhaul */
+.premium-card {
+  background: var(--bg-app);
+  border: 1px solid var(--border-main);
+  border-radius: 18px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-card:hover {
+  border-color: var(--text-main);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+}
+
+html.dark .premium-card:hover {
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.02);
+}
+
+/* Sidebar Round Widget */
+.sidebar-widget {
+  background-color: var(--bg-widget);
+  border: 1px solid var(--border-main);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.sidebar-widget:hover {
+  border-color: var(--text-main);
+}
+
+/* Border lines */
+.border-line {
+  border-color: var(--border-main);
+}
+
+/* Premium Navigation Headers */
+.premium-header {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-main);
+}
+
+html.dark .premium-header {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-main);
+}
+
+/* ═══════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════ */
+
+.pill-button-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.pill-button-primary:hover {
+  background-color: var(--btn-primary-hover);
+  transform: scale(1.02);
+}
+
+html.dark .pill-button-primary:hover {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+
+.pill-button-primary:active {
+  transform: scale(0.98);
+}
+
+.pill-button-secondary {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--btn-secondary-border);
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-button-secondary:hover {
+  background-color: var(--btn-secondary-hover);
+  border-color: var(--text-main);
+  transform: scale(1.02);
+}
+
+.pill-button-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Inputs styling */
+.premium-input {
+  background-color: var(--bg-widget);
+  border: 1px solid var(--border-main);
+  color: var(--text-main);
+  border-radius: 12px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-input:focus {
+  background-color: var(--bg-app);
+  border-color: var(--text-main);
+  box-shadow: 0 0 0 1px var(--text-main);
+  outline: none;
+}
+
+/* Twitter style legacy inputs */
+.twitter-input {
+  background-color: var(--bg-widget);
+  border: 1px solid var(--border-main);
+  color: var(--text-main);
+  border-radius: 8px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.twitter-input:focus {
+  background-color: var(--bg-app);
+  border-color: var(--text-main);
+  box-shadow: 0 0 0 1px var(--text-main);
+  outline: none;
+}
+
+/* ═══════════════════════════════════════════════
+   SHIMMER SKELETON & ANIMATIONS
+   ═══════════════════════════════════════════════ */
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.premium-skeleton {
+  background: linear-gradient(90deg, var(--bg-widget) 25%, var(--border-main) 50%, var(--bg-widget) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  border-radius: 8px;
+}
+
+/* Page Entry Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.97); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Micro-Bounce for likes/upvotes */
+@keyframes likeBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+.like-bounce {
+  animation: likeBounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Slide-in from right for mobile drawer */
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ═══════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════ */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="MeraShehar is a hyperlocal city super-app for news, complaints, job listings, and mandi rates." />
+    <title>MeraShehar — Hyperlocal Super-App</title>
+    <script>
+      // Inline theme detection — runs before first paint to prevent flash
+      (function() {
+        var stored = localStorage.getItem('ms-theme');
+        if (stored === 'light') {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
+        } else {
+          document.documentElement.classList.add('dark');
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000000');
+        }
+        // Block transitions until DOM is ready
+        document.documentElement.classList.add('no-transitions');
+        window.addEventListener('DOMContentLoaded', function() {
+          requestAnimationFrame(function() {
+            document.documentElement.classList.remove('no-transitions');
+          });
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
