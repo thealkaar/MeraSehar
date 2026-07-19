@@ -123,6 +123,231 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   border: 1px solid rgba(9, 9, 11, 0.05);
 }
 
+.premium-icon-button {
+  border-radius: 14px;
+  border: 1px solid var(--border-main);
+  background: color-mix(in srgb, var(--bg-app) 86%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.premium-icon-button:hover {
+  transform: translateY(-1px);
+  border-color: var(--text-main);
+}
+
+.premium-segment-control {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(244, 244, 245, 0.74));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 12px 28px rgba(0, 0, 0, 0.04);
+}
+
+html.dark .premium-segment-control {
+  background:
+    linear-gradient(135deg, rgba(24, 24, 27, 0.86), rgba(5, 5, 6, 0.92));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 14px 34px rgba(0, 0, 0, 0.35);
+}
+
+.premium-segment-option {
+  position: relative;
+  isolation: isolate;
+}
+
+.premium-segment-selected {
+  color: var(--text-main);
+  border: 1px solid color-mix(in srgb, var(--text-main) 14%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--bg-app) 94%, var(--text-main) 6%), color-mix(in srgb, var(--bg-widget) 86%, var(--text-main) 14%));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--text-inverse) 18%, transparent),
+    0 8px 22px color-mix(in srgb, var(--text-main) 9%, transparent);
+}
+
+html.dark .premium-segment-selected {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(135deg, rgba(63, 63, 70, 0.72), rgba(15, 15, 17, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 10px 26px rgba(255, 255, 255, 0.05);
+}
+
+.auth-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 78% 18%, color-mix(in srgb, var(--text-main) 10%, transparent), transparent 28%),
+    linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--border-main) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, transparent 0%, color-mix(in srgb, var(--border-main) 32%, transparent) 1px, transparent 1px);
+  background-size: auto, 72px 72px, 72px 72px;
+  opacity: 0.45;
+}
+
+.auth-stage {
+  perspective: 1200px;
+}
+
+.brand-orbit {
+  position: relative;
+  width: min(42vw, 560px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.brand-orbit::before,
+.brand-orbit::after {
+  content: "";
+  position: absolute;
+  inset: 10%;
+  border-radius: 50%;
+  background: conic-gradient(from 140deg, transparent 0 22%, color-mix(in srgb, var(--text-main) 18%, transparent) 32%, transparent 48% 100%);
+  filter: blur(0.4px);
+  animation: orbitSweep 7s linear infinite;
+}
+
+.brand-orbit::after {
+  inset: 21%;
+  animation-duration: 11s;
+  animation-direction: reverse;
+  opacity: 0.7;
+}
+
+.orbit-ring {
+  position: absolute;
+  inset: 5%;
+  border: 1px solid color-mix(in srgb, var(--text-main) 12%, transparent);
+  border-radius: 50%;
+  transform: rotateX(62deg) rotateZ(-18deg);
+  box-shadow: inset 0 0 32px color-mix(in srgb, var(--text-main) 5%, transparent);
+}
+
+.orbit-ring-two {
+  inset: 16%;
+  transform: rotateX(62deg) rotateZ(32deg);
+  animation: orbitTilt 8s ease-in-out infinite;
+}
+
+.orbit-ring-three {
+  inset: 27%;
+  transform: rotateX(62deg) rotateZ(82deg);
+  opacity: 0.72;
+}
+
+.brand-core {
+  position: relative;
+  z-index: 2;
+  width: 240px;
+  height: 240px;
+  border-radius: 34px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  align-content: center;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-app) 82%, var(--text-main) 8%), color-mix(in srgb, var(--bg-widget) 86%, var(--text-main) 14%));
+  border: 1px solid color-mix(in srgb, var(--text-main) 14%, transparent);
+  box-shadow:
+    0 30px 80px color-mix(in srgb, var(--text-main) 11%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--text-inverse) 22%, transparent);
+  animation: coreFloat 5.5s ease-in-out infinite;
+}
+
+.auth-logo-shine {
+  filter: drop-shadow(0 18px 34px color-mix(in srgb, var(--text-main) 18%, transparent));
+}
+
+.brand-wordmark {
+  color: var(--text-main);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.signal-dot {
+  position: absolute;
+  z-index: 3;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: var(--text-main);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--text-main) 8%, transparent);
+  animation: pulseDot 2.4s ease-in-out infinite;
+}
+
+.signal-dot-one {
+  top: 19%;
+  right: 25%;
+}
+
+.signal-dot-two {
+  left: 16%;
+  bottom: 30%;
+  animation-delay: 0.8s;
+}
+
+.signal-dot-three {
+  right: 16%;
+  bottom: 19%;
+  animation-delay: 1.4s;
+}
+
+.auth-metric {
+  position: absolute;
+  z-index: 4;
+  min-width: 150px;
+  border: 1px solid var(--border-main);
+  border-radius: 18px;
+  padding: 14px 16px;
+  background: color-mix(in srgb, var(--bg-app) 74%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.08);
+}
+
+.auth-metric span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.auth-metric strong {
+  display: block;
+  color: var(--text-main);
+  font-size: 18px;
+  line-height: 1.2;
+  margin-top: 3px;
+}
+
+.auth-metric-top {
+  top: 14%;
+  left: 10%;
+  animation: metricFloat 5s ease-in-out infinite;
+}
+
+.auth-metric-bottom {
+  right: 8%;
+  bottom: 18%;
+  animation: metricFloat 5s ease-in-out 1s infinite;
+}
+
+.auth-field:focus {
+  transform: translateY(-1px);
+}
+
+.otp-toast {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 html.dark .glass-premium {
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(20px);
@@ -290,6 +515,37 @@ html.dark .pill-button-primary:hover {
   to { transform: scale(1); opacity: 1; }
 }
 
+@keyframes orbitSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbitTilt {
+  0%, 100% { transform: rotateX(62deg) rotateZ(32deg) scale(1); }
+  50% { transform: rotateX(58deg) rotateZ(48deg) scale(1.04); }
+}
+
+@keyframes coreFloat {
+  0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+  50% { transform: translateY(-14px) rotateX(4deg) rotateY(-5deg); }
+}
+
+@keyframes metricFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.82;
+  }
+  50% {
+    transform: scale(1.28);
+    opacity: 1;
+  }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -338,4 +594,33 @@ html.dark .pill-button-primary:hover {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
+@media (min-width: 1024px) {
+  .desktop-premium-motion:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
 
+@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  .auth-shell::before {
+    opacity: 0.18;
+    background-size: auto, 56px 56px, 56px 56px;
+  }
+
+  .desktop-premium-motion,
+  .brand-orbit,
+  .brand-orbit::before,
+  .brand-orbit::after,
+  .orbit-ring,
+  .brand-core,
+  .signal-dot,
+  .auth-metric {
+    animation: none !important;
+  }
+
+  .pill-button-primary:hover,
+  .pill-button-secondary:hover,
+  .premium-card:hover,
+  .auth-field:focus {
+    transform: none;
+  }
+}

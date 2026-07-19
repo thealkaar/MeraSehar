@@ -1,0 +1,66 @@
+INFO:     127.0.0.1:53428 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64902 - "GET /docs HTTP/1.1" 200 OK
+
+==================================================
+ MOCK OTP FOR +919876543210: 592671 (valid for 5 mins) 
+==================================================
+
+INFO:     127.0.0.1:64903 - "POST /api/v1/auth/send-otp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51521 - "OPTIONS /api/v1/auth/send-otp HTTP/1.1" 200 OK
+
+==================================================
+ MOCK OTP FOR +918303959728: 316868 (valid for 5 mins) 
+==================================================
+
+INFO:     127.0.0.1:51521 - "POST /api/v1/auth/send-otp HTTP/1.1" 200 OK
+
+==================================================
+ MOCK OTP FOR +919876543210: 896529 (valid for 5 mins) 
+==================================================
+
+INFO:     127.0.0.1:59253 - "POST /api/v1/auth/send-otp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "OPTIONS /api/v1/auth/verify-otp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "POST /api/v1/auth/verify-otp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "OPTIONS /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "OPTIONS /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59263 - "GET /api/v1/feed/media/e000219b-46d4-4922-bca1-d091db76b162.jpg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "OPTIONS /api/v1/feed?type=news&limit=10&sort=trending HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "GET /api/v1/feed?type=news&limit=10&sort=trending HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "GET /api/v1/feed?type=news&limit=10&sort=trending HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56387 - "OPTIONS /api/v1/auth/verify-otp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56387 - "POST /api/v1/auth/verify-otp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56387 - "OPTIONS /api/v1/auth/register HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "OPTIONS /api/v1/feed?type=complaint&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54871 - "OPTIONS /api/v1/feed?type=complaint&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56387 - "POST /api/v1/auth/register HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "GET /api/v1/feed?type=complaint&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49313 - "GET /api/v1/feed?type=complaint&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56387 - "OPTIONS /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56387 - "OPTIONS /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56387 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56387 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49313 - "OPTIONS /api/v1/jobs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "OPTIONS /api/v1/jobs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49313 - "GET /api/v1/jobs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "GET /api/v1/jobs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "OPTIONS /api/v1/rates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "GET /api/v1/rates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61936 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49313 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56931 - "GET /api/v1/feed?type=complaint&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56931 - "GET /api/v1/feed?type=complaint&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59929 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59929 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64552 - "GET /api/v1/feed?type=news&limit=10&sort=trending HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64552 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56715 - "GET /api/v1/feed?type=news&limit=10&sort=trending HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56715 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56652 - "GET /api/v1/feed?type=news&limit=10&sort=trending HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56761 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56214 - "OPTIONS /api/v1/feed?type=news&limit=10&sort=trending HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56214 - "GET /api/v1/feed?type=news&limit=10&sort=trending HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55609 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55609 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK

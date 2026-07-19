@@ -301,12 +301,12 @@ export default function FeedView({ type, user }) {
       {/* Top Controller */}
       <div className="flex items-center justify-between mb-5.5 animate-fadeIn">
         {/* Sort Tabs */}
-        <div className="flex gap-1 bg-zinc-50 dark:bg-zinc-950 p-1 rounded-xl border border-line">
+        <div className="premium-segment-control flex gap-3 p-1 rounded-xl border border-line">
           <button 
             onClick={() => setSort('recent')}
-            className={`px-4.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all duration-300 ${
+            className={`premium-segment-option px-5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all duration-300 ${
               sort === 'recent' 
-                ? 'bg-black dark:bg-white text-white dark:text-black shadow-sm' 
+                ? 'premium-segment-selected' 
                 : 'text-zinc-500 hover:text-black dark:hover:text-white'
             }`}
           >
@@ -314,9 +314,9 @@ export default function FeedView({ type, user }) {
           </button>
           <button 
             onClick={() => setSort('trending')}
-            className={`px-4.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all duration-300 ${
+            className={`premium-segment-option px-5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all duration-300 ${
               sort === 'trending' 
-                ? 'bg-black dark:bg-white text-white dark:text-black shadow-sm' 
+                ? 'premium-segment-selected' 
                 : 'text-zinc-500 hover:text-black dark:hover:text-white'
             }`}
           >

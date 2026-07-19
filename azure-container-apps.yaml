@@ -1,0 +1,62 @@
+resourceGroupName: merasehar-rg
+location: eastus
+environmentName: merasehar-env
+containerAppName: merasehar-app
+
+services:
+  - name: merasehar-db
+    image: postgis/postgis:15-3.3-alpine
+    targetPort: 5432
+    exposedPort: 5432
+    env:
+      - name: POSTGRES_DB
+        value: merasehar
+      - name: POSTGRES_USER
+        value: merasehar
+      - name: POSTGRES_PASSWORD
+        secretRef: db-password
+    resources:
+      cpu: 0.5
+      memory: 1Gi
+    scale:
+      minReplicas: 1
+      maxReplicas: 1
+
+  - name: merasehar-backend
+    image: merasehar-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    targetPort: 8000
+    exposedPort: 8000
+    env:
+      - name: DATABASE_URL
+        value: postgresql://merasehar:$(db-password)@merasehar-db:5432/merasehar
+      - name: SECRET_KEY
+        secretRef: secret-key
+    resources:
+      cpu: 0.5
+      memory: 1Gi
+    scale:
+      minReplicas: 1
+      maxReplicas: 3
+
+  - name: merasehar-frontend
+    image: merasehar-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    targetPort: 80
+    exposedPort: 80
+    resources:
+      cpu: 0.25
+      memory: 0.5Gi
+    scale:
+      minReplicas: 1
+      maxReplicas: 3
+
+secrets:
+  - name: db-password
+    value: merasehar_secret
+  - name: secret-key
+    value: production-secret-key-change-me

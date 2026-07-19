@@ -1,0 +1,17 @@
+[2m9:00:02 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:00:02 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:28:15 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:28:15 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:28:27 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:28:27 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:28:28 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:28:28 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:28:40 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:28:40 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:32:48 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:32:48 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:39:42 am[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mError: Could not validate credentials
+    at request (http://localhost:5173/src/api.js:31:9)
+    at async fetchInitialFeed (http://localhost:5173/src/views/FeedView.jsx?t=1784434143032:82:21)
+[2m9:39:42 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}
+[2m9:39:42 am[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mGeolocation denied or unavailable {}

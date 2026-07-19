@@ -9,7 +9,11 @@ router = APIRouter(prefix="/auth", tags=["authentication"])
 def send_otp(payload: schemas.OTPSend):
     # Generates a mock OTP, logs it to terminal
     otp = auth.generate_otp(payload.mobile_number)
-    return {"message": "OTP sent successfully (check console/logs for code)"}
+    return {
+        "message": "OTP sent successfully",
+        "otp": otp,
+        "expires_in_seconds": 300,
+    }
 
 @router.post("/verify-otp", response_model=schemas.OTPVerifyResponse)
 def verify_otp(payload: schemas.OTPVerify, db: Session = Depends(get_db)):
