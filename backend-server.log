@@ -64,3 +64,22 @@ INFO:     127.0.0.1:56214 - "OPTIONS /api/v1/feed?type=news&limit=10&sort=trendi
 INFO:     127.0.0.1:56214 - "GET /api/v1/feed?type=news&limit=10&sort=trending HTTP/1.1" 401 Unauthorized
 INFO:     127.0.0.1:55609 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
 INFO:     127.0.0.1:55609 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60949 - "OPTIONS /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56998 - "OPTIONS /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "GET /api/v1/feed?type=news&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54098 - "OPTIONS /api/v1/feed?type=complaint&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54098 - "OPTIONS /api/v1/feed?type=complaint&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54098 - "GET /api/v1/feed?type=complaint&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54098 - "GET /api/v1/feed?type=complaint&limit=10&sort=recent HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52598 - "OPTIONS /api/v1/auth/send-otp HTTP/1.1" 200 OK
+
+==================================================
+ MOCK OTP FOR +919935578033: 172080 (valid for 5 mins) 
+==================================================
+
+INFO:     127.0.0.1:52598 - "POST /api/v1/auth/send-otp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54803 - "OPTIONS /api/v1/auth/verify-otp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54803 - "POST /api/v1/auth/verify-otp HTTP/1.1" 200 OK

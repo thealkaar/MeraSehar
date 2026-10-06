@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { api } from '../api';
 import { 
   Search, Briefcase, MapPin, Phone, User, Plus, X, Loader2, 
-  Map, DollarSign, Calendar, ChevronRight, Ban 
+  DollarSign, Calendar, ChevronRight, Ban
 } from 'lucide-react';
 
 export default function JobsView({ user }) {
@@ -36,7 +36,7 @@ export default function JobsView({ user }) {
     "Other"
   ];
 
-  const fetchJobs = async () => {
+  const fetchJobs = useCallback(async () => {
     setLoading(true);
     try {
       const list = await api.getJobs({
@@ -50,11 +50,12 @@ export default function JobsView({ user }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [search, categoryFilter, locationFilter]);
 
   useEffect(() => {
-    fetchJobs();
-  }, [categoryFilter]);
+    const timer = setTimeout(fetchJobs, 250);
+    return () => clearTimeout(timer);
+  }, [fetchJobs]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -398,18 +399,29 @@ export default function JobsView({ user }) {
                 </p>
               </div>
 
-              {/* Contact Info */}
-              <div className="bg-zinc-50 dark:bg-zinc-950 border border-line p-4.5 rounded-xl space-y-3">
-                <h4 className="text-[10px] font-black text-black dark:text-white uppercase tracking-wider">Employer Contact Info</h4>
-                <div className="space-y-2.5">
+              {/* Contact Info & Direct Actions */}
+              <div className="bg-zinc-50 dark:bg-zinc-900/60 border border-line p-4 rounded-2xl space-y-3">
+                <h4 className="text-[10px] font-black text-black dark:text-white uppercase tracking-wider">Contact Employer</h4>
+                <div className="space-y-2">
                   <div className="flex items-center gap-2.5 text-zinc-800 dark:text-zinc-200 text-xs font-bold">
-                    <User className="w-4.5 h-4.5 text-zinc-500" />
+                    <User className="w-4 h-4 text-zinc-400" />
                     <span>{selectedJob.contact_name}</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-zinc-800 dark:text-zinc-200 text-xs font-extrabold">
-                    <Phone className="w-4.5 h-4.5 text-zinc-500" />
-                    <a href={`tel:${selectedJob.contact_number}`} className="hover:underline text-black dark:text-white underline decoration-zinc-400">
-                      {selectedJob.contact_number}
+                  <div className="grid grid-cols-2 gap-2 pt-1">
+                    <a
+                      href={`tel:${selectedJob.contact_number}`}
+                      className="flex items-center justify-center gap-2 py-2.5 bg-black dark:bg-white text-white dark:text-black rounded-xl text-xs font-black hover:opacity-90 transition"
+                    >
+                      <Phone className="w-3.5 h-3.5 fill-current" />
+                      <span>Call {selectedJob.contact_number}</span>
+                    </a>
+                    <a
+                      href={`https://wa.me/91${selectedJob.contact_number.replace(/\D/g, '')}?text=${encodeURIComponent(`Hi ${selectedJob.contact_name}, I am reaching out regarding your job posting for ${selectedJob.title} on MeraShehar.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-black hover:bg-emerald-700 transition"
+                    >
+                      <span>WhatsApp</span>
                     </a>
                   </div>
                 </div>

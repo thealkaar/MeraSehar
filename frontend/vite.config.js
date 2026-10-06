@@ -68,22 +68,6 @@ export default defineConfig({
               }
             }
           },
-          {
-            // Cache backend API requests dynamically with NetworkFirst
-            urlPattern: /\/api\/v1\/(feed|jobs|rates).*/,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'api-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 2 // 2 hours
-              },
-              networkTimeoutSeconds: 5,
-              cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          }
         ]
       }
     })

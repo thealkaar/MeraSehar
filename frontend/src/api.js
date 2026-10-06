@@ -35,7 +35,7 @@ async function request(endpoint, options = {}) {
     try {
       const errorJson = await response.json();
       errorDetail = errorJson.detail || errorDetail;
-    } catch (_) {}
+    } catch {}
     
     // Auto-logout on 401 Unauthorized
     if (response.status === 401 && !options.noAuth) {
@@ -55,16 +55,72 @@ async function request(endpoint, options = {}) {
   return response;
 }
 
+export async function reverseGeocode(lat, lng) {
+  const googleKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  if (googleKey) {
+    try {
+      const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${googleKey}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.results && data.results.length > 0) {
+          let city = '';
+          let district = '';
+          let address = data.results[0].formatted_address || '';
+          data.results[0].address_components.forEach(comp => {
+            if (comp.types.includes('locality')) city = comp.long_name;
+            if (comp.types.includes('administrative_area_level_2')) district = comp.long_name;
+          });
+          return {
+            city: city || district || 'Lucknow',
+            district: district || city || 'Lucknow',
+            address
+          };
+        }
+      }
+    } catch (e) {
+      console.warn("Google Maps reverse geocoding error:", e);
+    }
+  }
+
+  // Fallback to OpenStreetMap Nominatim
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=14&addressdetails=1`);
+    if (res.ok) {
+      const data = await res.json();
+      const addr = data.address || {};
+      const city = addr.city || addr.town || addr.village || addr.suburb || addr.state_district || 'Lucknow';
+      const district = addr.state_district || addr.county || city;
+      return {
+        city: city.replace(/ Division| District/gi, '').trim(),
+        district: district.replace(/ Division| District/gi, '').trim(),
+        address: data.display_name || ''
+      };
+    }
+  } catch (e) {
+    console.warn("Nominatim reverse geocode error:", e);
+  }
+
+  return { city: 'Lucknow', district: 'Lucknow', address: '' };
+}
+
 export const api = {
-  // Auth
-  sendOtp: (mobile_number) => 
+  register: (userData) =>
+    request('/auth/register', { method: 'POST', body: userData, noAuth: true }),
+
+  login: (credentials) =>
+    request('/auth/login', { method: 'POST', body: credentials, noAuth: true }),
+
+  authorityRegister: (userData) =>
+    request('/auth/authority/register', { method: 'POST', body: userData, noAuth: true }),
+
+  authorityLogin: (credentials) =>
+    request('/auth/authority/login', { method: 'POST', body: credentials, noAuth: true }),
+
+  sendOtp: (mobile_number) =>
     request('/auth/send-otp', { method: 'POST', body: { mobile_number }, noAuth: true }),
     
-  verifyOtp: (mobile_number, otp) => 
+  verifyOtp: (mobile_number, otp) =>
     request('/auth/verify-otp', { method: 'POST', body: { mobile_number, otp }, noAuth: true }),
-    
-  register: (userData) => 
-    request('/auth/register', { method: 'POST', body: userData, noAuth: true }),
     
   getMe: () => 
     request('/auth/me'),
@@ -80,6 +136,9 @@ export const api = {
     if (statusFilter) url += `&status_filter=${encodeURIComponent(statusFilter)}`;
     return request(url);
   },
+
+  getCivicImpact: () =>
+    request('/feed/complaints/impact'),
 
   createPost: (formData) => {
     // formData is an instance of FormData to handle media file uploads
@@ -118,10 +177,13 @@ export const api = {
     request(`/jobs/${jobId}/deactivate`, { method: 'PATCH' }),
 
   // Mandi Rates
-  getRates: ({ commodity = '', mandi = '' } = {}) => {
+  getRates: ({ commodity = '', mandi = '', district = '', state = '', refresh = false } = {}) => {
     let url = '/rates?';
     if (commodity) url += `commodity=${encodeURIComponent(commodity)}&`;
     if (mandi) url += `mandi=${encodeURIComponent(mandi)}&`;
+    if (district) url += `district=${encodeURIComponent(district)}&`;
+    if (state) url += `state=${encodeURIComponent(state)}&`;
+    if (refresh) url += 'refresh=1&';
     return request(url);
   },
 

@@ -1,0 +1,8 @@
+.env
+.env.*
+!.env.example
+**/node_modules/
+**/__pycache__/
+*.py[cod]
+backend/mera_shehar.db-shm
+backend/mera_shehar.db-wal

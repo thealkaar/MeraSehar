@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { api } from '../api';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { api, getMediaUrl } from '../api';
+import AqiWeatherCard from '../components/AqiWeatherCard';
+import CivicImpactWidget from '../components/CivicImpactWidget';
 import { 
-  Heart, ArrowUp, MessageCircle, Send, Image, Camera, X, Plus, 
+  Heart, ArrowUp, MessageCircle, Send, Camera, X, Plus,
   ChevronDown, MessageSquare, CheckCircle, AlertTriangle, HelpCircle, 
-  MapPin, Loader2, RefreshCw 
+  MapPin, Loader2, RefreshCw
 } from 'lucide-react';
 
 export default function FeedView({ type, user }) {
@@ -85,7 +87,7 @@ export default function FeedView({ type, user }) {
   };
 
   // Fetch initial posts on type, sort or filter change
-  const fetchInitialFeed = async () => {
+  const fetchInitialFeed = useCallback(async () => {
     setLoading(true);
     setHasMore(true);
     try {
@@ -103,14 +105,14 @@ export default function FeedView({ type, user }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [type, sort, categoryFilter, statusFilter]);
 
   useEffect(() => {
     fetchInitialFeed();
-  }, [type, sort, categoryFilter, statusFilter]);
+  }, [fetchInitialFeed]);
 
   // Fetch more posts for infinite scroll
-  const fetchNextPage = async () => {
+  const fetchNextPage = useCallback(async () => {
     if (loadingMore || !hasMore || !cursor) return;
     setLoadingMore(true);
     try {
@@ -129,10 +131,13 @@ export default function FeedView({ type, user }) {
     } finally {
       setLoadingMore(false);
     }
-  };
+  }, [loadingMore, hasMore, cursor, type, sort, categoryFilter, statusFilter]);
 
   // Setup Intersection Observer for infinite scroll
   useEffect(() => {
+    const loader = loaderRef.current;
+    if (!loader) return undefined;
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && hasMore && !loading && !loadingMore) {
@@ -142,16 +147,12 @@ export default function FeedView({ type, user }) {
       { threshold: 0.1 }
     );
 
-    if (loaderRef.current) {
-      observer.observe(loaderRef.current);
-    }
+    observer.observe(loader);
 
     return () => {
-      if (loaderRef.current) {
-        observer.unobserve(loaderRef.current);
-      }
+      observer.unobserve(loader);
     };
-  }, [cursor, hasMore, loading, loadingMore]);
+  }, [fetchNextPage, hasMore, loading, loadingMore]);
 
   // Interactive functions
   const handleLike = async (postId) => {
@@ -297,9 +298,13 @@ export default function FeedView({ type, user }) {
   };
 
   return (
-    <div className="w-full px-4 pt-4 pb-24 relative">
+    <div className="w-full px-4 pt-2 pb-24 relative">
+      {/* Header Banner Widgets */}
+      {type === 'news' && <AqiWeatherCard city={user?.city || 'Lucknow'} />}
+      {type === 'complaint' && <CivicImpactWidget city={user?.city || 'Lucknow'} />}
+
       {/* Top Controller */}
-      <div className="flex items-center justify-between mb-5.5 animate-fadeIn">
+      <div className="flex items-center justify-between mb-5.5 mt-3 animate-fadeIn">
         {/* Sort Tabs */}
         <div className="premium-segment-control flex gap-3 p-1 rounded-xl border border-line">
           <button 
@@ -431,9 +436,9 @@ export default function FeedView({ type, user }) {
                 {/* Media Image */}
                 {post.media_url && (
                   <div className="relative aspect-video bg-zinc-100 dark:bg-black overflow-hidden border-b border-line">
-                    <img 
-                      src={`http://localhost:8000${post.media_url}`} 
-                      alt="Upload Attachment" 
+                    <img
+                      src={getMediaUrl(post.media_url)}
+                      alt="Upload Attachment"
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         e.target.onerror = null;

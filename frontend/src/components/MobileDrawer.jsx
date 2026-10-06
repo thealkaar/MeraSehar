@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Sun, Moon, LogOut, Shield, X } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { Sun, Moon, LogOut, Shield, X, PhoneCall } from 'lucide-react';
+import { useTheme } from '../context/useTheme';
 import Logo from './Logo';
 
-export default function MobileDrawer({ isOpen, onClose, user, onLogout, onViewAuthority }) {
+export default function MobileDrawer({ isOpen, onClose, user, onLogout, onViewAuthority, onEmergencyOpen }) {
   const { theme, toggleTheme } = useTheme();
   const drawerRef = useRef(null);
   const touchStartX = useRef(0);
@@ -81,7 +81,7 @@ export default function MobileDrawer({ isOpen, onClose, user, onLogout, onViewAu
           <div className="flex items-center gap-2.5">
             <Logo className="w-7 h-7 shrink-0" />
             <span className="font-black text-sm tracking-wider text-black dark:text-white uppercase">
-              MeraShehar
+              MERA<span className="text-emerald-600 dark:text-emerald-400">SEHAR</span>
             </span>
           </div>
           <button
@@ -111,6 +111,15 @@ export default function MobileDrawer({ isOpen, onClose, user, onLogout, onViewAu
 
         {/* Menu Items */}
         <div className="flex-1 px-4 py-4 space-y-1.5">
+          {/* Emergency Helplines */}
+          <button
+            onClick={() => { onEmergencyOpen(); onClose(); }}
+            className="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-bold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 transition-all duration-300"
+          >
+            <PhoneCall className="w-5 h-5 shrink-0" />
+            <span>Emergency Helplines</span>
+          </button>
+
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}

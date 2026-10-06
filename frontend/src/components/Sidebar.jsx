@@ -1,6 +1,6 @@
 import React from 'react';
 import { Megaphone, Briefcase, TrendingUp, Sun, Moon, LogOut, Shield } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../context/useTheme';
 import Logo from './Logo';
 import ComplaintIcon from './ComplaintIcon';
 
@@ -21,7 +21,7 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout, onVie
         <div className="flex items-center gap-3 px-2">
           <Logo className="w-8 h-8 shrink-0" />
           <span className="font-black text-lg tracking-wider text-black dark:text-white uppercase">
-            MeraShehar
+            MERA<span className="text-emerald-600 dark:text-emerald-400">SHEHAR</span>
           </span>
         </div>
 

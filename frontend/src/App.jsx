@@ -9,6 +9,7 @@ import FeedView from './views/FeedView';
 import JobsView from './views/JobsView';
 import RatesView from './views/RatesView';
 import AuthorityView from './views/AuthorityView';
+import EmergencyModal from './components/EmergencyModal';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -17,6 +18,7 @@ export default function App() {
   const [viewingAuthority, setViewingAuthority] = useState(false);
   const [appReady, setAppReady] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [emergencyOpen, setEmergencyOpen] = useState(false);
 
   // Edge swipe detection for opening drawer from right edge
   const edgeTouchStartX = useRef(null);
@@ -86,6 +88,9 @@ export default function App() {
   }, []);
 
   const handleAuthSuccess = (userData) => {
+    if (window.location.pathname === '/admin') {
+      window.history.replaceState({}, '', '/');
+    }
     setToken(localStorage.getItem('token'));
     setUser(userData);
   };
@@ -111,7 +116,12 @@ export default function App() {
 
   // Not authenticated — show Auth flow
   if (!token) {
-    return <AuthView onAuthSuccess={handleAuthSuccess} />;
+    return (
+      <AuthView
+        onAuthSuccess={handleAuthSuccess}
+        isAdmin={window.location.pathname === '/admin'}
+      />
+    );
   }
 
   // Main authenticated layout
@@ -140,6 +150,7 @@ export default function App() {
             user={user}
             onUserUpdate={handleUserUpdate}
             onMenuOpen={() => setDrawerOpen(true)}
+            onEmergencyOpen={() => setEmergencyOpen(true)}
           />
 
           {/* Content Area */}
@@ -198,6 +209,14 @@ export default function App() {
         user={user}
         onLogout={handleLogout}
         onViewAuthority={() => setViewingAuthority(true)}
+        onEmergencyOpen={() => setEmergencyOpen(true)}
+      />
+
+      {/* ═══ Emergency Helplines Modal ═══ */}
+      <EmergencyModal
+        isOpen={emergencyOpen}
+        onClose={() => setEmergencyOpen(false)}
+        city={user?.city || 'Lucknow'}
       />
     </div>
   );

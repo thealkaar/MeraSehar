@@ -11,3 +11,13 @@ INFO:app.scheduler:Starting daily Agmarknet rates fetch...
 INFO:app.scheduler:Rates for today already exist. Skipping.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+ERROR:asyncio:Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Users\alokm\AppData\Local\Programs\Python\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\alokm\AppData\Local\Programs\Python\Python39\lib\asyncio\proactor_events.py", line 162, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:apscheduler.executors.default:Run time of job "fetch_and_sync_rates (trigger: cron[hour='6', minute='0'], next run at: 2026-07-21 06:00:00 IST)" was missed by 0:03:04.213276
+WARNING:apscheduler.executors.default:Run time of job "fetch_and_sync_rates (trigger: cron[hour='6', minute='0'], next run at: 2026-07-22 06:00:00 IST)" was missed by 15:13:46.135649

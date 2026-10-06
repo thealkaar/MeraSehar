@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { api } from '../api';
+import React, { useCallback, useState, useEffect } from 'react';
+import { api, getMediaUrl } from '../api';
 import { 
-  X, CheckCircle, AlertTriangle, RefreshCw, HelpCircle, 
-  MapPin, Clock, Edit2, Loader2, ArrowRight 
+  X, CheckCircle, AlertTriangle, MapPin, Clock, Loader2
 } from 'lucide-react';
 
 export default function AuthorityView({ user, onClose }) {
@@ -41,7 +40,7 @@ export default function AuthorityView({ user, onClose }) {
     },
   };
 
-  const fetchComplaints = async () => {
+  const fetchComplaints = useCallback(async () => {
     setLoading(true);
     try {
       const response = await api.getFeed({
@@ -56,13 +55,13 @@ export default function AuthorityView({ user, onClose }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter]);
 
   useEffect(() => {
     if (user?.is_authority) {
       fetchComplaints();
     }
-  }, [statusFilter]);
+  }, [fetchComplaints, user?.is_authority]);
 
   const handleUpdateStatus = async (statusVal) => {
     if (!activeComplaint) return;
@@ -72,7 +71,7 @@ export default function AuthorityView({ user, onClose }) {
       // Update in local list
       setComplaints(prev => prev.map(c => c.id === updated.id ? { ...c, status: updated.status } : c));
       setActiveComplaint(null);
-      fetchComplaints();
+      await fetchComplaints();
     } catch (err) {
       alert(err.message || 'Failed to update complaint status');
     } finally {
@@ -214,7 +213,7 @@ export default function AuthorityView({ user, onClose }) {
               {/* Photo attachment */}
               {activeComplaint.media_url && (
                 <div className="w-full aspect-video rounded-xl bg-zinc-100 dark:bg-black border border-line overflow-hidden">
-                  <img src={`http://localhost:8000${activeComplaint.media_url}`} alt="Evidence" className="w-full h-full object-cover" />
+                  <img src={getMediaUrl(activeComplaint.media_url)} alt="Evidence" className="w-full h-full object-cover" />
                 </div>
               )}
 
